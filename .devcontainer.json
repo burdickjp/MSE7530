@@ -1,0 +1,48 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "Jupyter Data Science Notebook",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/home/jovyan/work,type=bind,consistency=cached",
+	"workspaceFolder": "/home/jovyan/work",
+
+	"build": {
+        // Path is relative to the devcontainer.json file.
+        "dockerfile": "Containerfile"
+	},
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	"features": {},
+
+	"runArgs": [
+		"--userns=keep-id",
+		"--security-opt=label=disable"
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [8888],
+	"portsAttributes": {
+		"8888": {
+			"label": "Jupyter",
+			"requireLocalPort": true,
+			"onAutoForward": "ignore"
+		}
+	},
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.defaultInterpreterPath": "/opt/conda/bin/python"
+			},
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-python-envs",
+				"ms-python.debugpy",
+				"ms-python.vscode-pylance",
+				"james-yu.latex-workshop",
+				"continue.continue"
+				
+			]
+		}
+	}
+}
